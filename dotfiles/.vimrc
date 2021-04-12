@@ -25,6 +25,7 @@ set encoding=utf-8  " Use an encoding that supports unicode.
 set linebreak       " Avoid wrapping a line in the middle of a word.
 syntax enable       " Enable syntax highlighting.
 set wrap            " Enable line wrapping.
+set guifont=<FiraCode>
 
 
 " User Interface
@@ -53,6 +54,11 @@ set autoread          " Automatically re-read files if unmodified inside Vim.
 set history=1000      " Increase the undo limit.
 " set spell             " Enable spellchecking.
 set showmatch         " Highlight matching brace
+
+
+" Mapping
+:let mapleader = " "
+imap ii <Esc>
 
 
 " Plugins
