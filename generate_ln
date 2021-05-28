@@ -1,24 +1,24 @@
 #!/bin/bash
 
-REPO_FOLDER="~/Github/os-settings"
+eval "export CONFIG=$PWD"
 
 # dotfiles
-mv ~/.profile ~/.profile.old
-mv ~/.zprofile ~/.zprofile.old
-mv ~/.vimrc ~/.vimrc.old
+cp ~/.profile ~/.profile.old
+cp ~/.zprofile ~/.zprofile.old
+cp ~/.vimrc ~/.vimrc.old
 
-ln $REPO_FOLDER/dotfiles/.profile ~/.profile
-ln $REPO_FOLDER/dotfiles/.zprofile ~/.zprofile
-ln $REPO_FOLDER/dotfiles/.vimrc ~/.vimrc
+ln "$CONFIG/dotfiles/.profile" ~/.profile
+ln "$CONFIG/dotfiles/.zprofile" ~/.zprofile
+ln "$CONFIG/dotfiles/.vimrc" ~/.vimrc
 
 # .config folder
-mv ~/.config/alacritty ~/.config/alacritty.old
-mv ~/.config/nvim ~/.config/nvim.old
+cp ~/.config/alacritty ~/.config/alacritty.old
+cp ~/.config/nvim ~/.config/nvim.old
 
-ln -s $REPO_FOLDER/.config/alacritty ~/.config/alacritty
-ln -s $REPO_FOLDER/.config/nvim ~/.config/nvim
+ln -s "$CONFIG/.config/alacritty" ~/.config/alacritty
+ln -s "$CONFIG/.config/nvim" ~/.config/nvim
 
 # custom .bins
-mv ~/.bin ~/.bin.old
+cp ~/.bin ~/.bin.old
 
-ln -s $REPO_FOLDER/.bin ~/.bin
+ln -s "$CONFIG/.bin" ~/.bin
