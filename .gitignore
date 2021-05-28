@@ -1,2 +1,6 @@
+# nvim package folders
 pack/
 plugged/
+
+# python provider venv
+.venv
