@@ -3,6 +3,8 @@ call plug#begin('~/.config/nvim/plugged')
 " Themes
 
 Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
+Plug 'cocopon/iceberg.vim'
 
 " Interface
 
@@ -10,18 +12,21 @@ Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf.vim'
-" Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" Helpers
+Plug 'christoomey/vim-tmux-navigator'
+
 " Code Style
 
+Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Chiel92/vim-autoformat'
 " Plug 'vim-syntastic/syntastic'
 Plug 'dense-analysis/ale'
+Plug 'codota/tabnine-vim'
 
 " coc
 " Plug 'pappasam/coc-jedi', {'branch': 'main', 'do': 'yarn install --frozen-lockfile'}
@@ -31,7 +36,7 @@ Plug 'dense-analysis/ale'
 " Source control
 " Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -40,10 +45,14 @@ call plug#end()
 " ========
 
 " NERDTree
-" Start NERDTree when Vim starts with a directory argument.
+" Start NERDTree when Vim starts with a argument distinct git file o directory.
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && !exists('s:std_in') |
+autocmd VimEnter * if argc() == 1 && !exists('s:std_in') && !isdirectory(argv()[0]) && &filetype !=# 'gitcommit' |
             \ execute 'NERDTree' argv()[0] | wincmd p | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+"autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+"            \ let buf=bufnr() | buffer# | execute 'normal! \<C-W>w' | execute 'buffer'.buf | endif
 
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
@@ -99,24 +108,15 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Disable coc suggest for js, py archives
-autocmd FileType python let b:coc_suggest_disable = 1
-autocmd FileType javascript let b:coc_suggest_disable = 1
-
-" Kite
-let g:kite_supported_languages = ['javascript', 'python']
-
-" Trigger completion
-if &filetype == 'javascript' || &filetype == 'python'
-    inoremap <C-space> <C-x><C-U>
-else
-    inoremap <silent><expr> <C-space> coc#refresh()
-endif
+inoremap <silent><expr> <C-space> coc#refresh()
 
 " ALE
 
 nmap <C-A-f> :ALEFix<CR>
-let b:ale_fixers = {
+let g:ale_virtualenv_dir_names = ['env', '.env', 'venv', '.venv']
+
+" add_blank_lines_for_python_control_statements
+let g:ale_fixers = {
             \   '*': [
             \       'remove_trailing_lines',
             \       'trim_whitespace'
@@ -124,11 +124,16 @@ let b:ale_fixers = {
             \   'python': [
             \       'isort',
             \       'autopep8',
-            \       'add_blank_lines_for_python_control_statements'
+            \   ],
+            \   'yamel': [
+            \       'prettier'
             \   ]}
-let b:ale_linters = {
+let g:ale_linters = {
             \   'python': [
-            \       'pylint', 'pycodestyle'
+            \       'pylint',
+            \       'pycodestyle',
+            \       'pyright',
+            \       'pyre'
             \   ]}
 
 " Syntastic
@@ -144,6 +149,18 @@ let b:ale_linters = {
 
 " Theme
 
-colorscheme gruvbox
+" Ayu
+set termguicolors
+
+let ayucolor="mirage" " for mirage version of theme
+let g:indentLine_char = ''
+let g:indentLine_first_char = ''
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0
+
+" Gruvbox
 let g:gruvbox_contrast_dark = 'hard'
 
+colorscheme ayu
+" colorscheme gruvbox
+" colorscheme iceberg
