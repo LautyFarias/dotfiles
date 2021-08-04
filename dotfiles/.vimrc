@@ -61,11 +61,17 @@ set history=1000      " Increase the undo limit.
 " set spell             " Enable spellchecking.
 set showmatch         " Highlight matching brace
 set clipboard=unnamedplus
+set termguicolors
 
 
 " Mapping
 :let mapleader = ' '
 imap ii <Esc>
+nmap <Esc> :noh<CR>
+
+nnoremap <C-s> :w<CR>
+nnoremap <C-q> :q<CR>
+
 nnoremap <C-S-Up> :sp<CR>
 nnoremap <C-S-Right> :vsp<CR>
 
@@ -87,9 +93,7 @@ vnoremap <C-Up> :m '<-2<CR>gv=gv
 cmap w!! w !sudo tee > /dev/null %
 
 " Providers
-
 let g:python3_host_prog = '~/.config/nvim/.venv/bin/python'
 
 " Plugins
-
 source ~/.config/nvim/plugins.vim
