@@ -158,7 +158,7 @@ fi
 alias grubup="sudo update-grub"
 
 alias aup="pamac upgrade --aur"
-alias orphaned="sudo pacman -Rns $(pacman -Qtdq)"
+alias orphaned="pacman -Qtdq"
 alias fixpacman="sudo rm /var/lib/pacman/db.lck"
 
 alias untar='tar -zxvf '
@@ -183,6 +183,8 @@ alias vdir='vdir --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+alias nyancat='pygmentize -g -O style=colorful,linenos=1'
 
 alias path='echo -e ${PATH//:/\\n}'
 
