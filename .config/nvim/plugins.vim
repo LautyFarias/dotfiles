@@ -24,7 +24,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Chiel92/vim-autoformat'
-" Plug 'vim-syntastic/syntastic'
 Plug 'dense-analysis/ale'
 Plug 'codota/tabnine-vim'
 
@@ -34,9 +33,7 @@ Plug 'codota/tabnine-vim'
 " Plug 'LeonardSSH/coc-discord-rpc', {'do': 'yarn install --frozen-lockfile'}
 
 " Source control
-" Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-signify'
-" Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -85,18 +82,21 @@ let g:NERDTreeGitStatusShowIgnored = 1
 " Vim tmux navigator
 let g:tmux_navigator_no_mappings = 1
 
-nnoremap <silent> <A-h> :TmuxNavigateLeft<CR>
-nnoremap <silent> <A-j> :TmuxNavigateDown<CR>
-nnoremap <silent> <A-k> :TmuxNavigateUp<CR>
-nnoremap <silent> <A-l> :TmuxNavigateRight<CR>
-nnoremap <silent> <A-Left> :TmuxNavigateLeft<CR>
-nnoremap <silent> <A-Down> :TmuxNavigateDown<CR>
-nnoremap <silent> <A-Up> :TmuxNavigateUp<CR>
-nnoremap <silent> <A-Right> :TmuxNavigateRight<CR>
+nnoremap <silent> <Leader>h :TmuxNavigateLeft<CR>
+nnoremap <silent> <Leader>j :TmuxNavigateDown<CR>
+nnoremap <silent> <Leader>k :TmuxNavigateUp<CR>
+nnoremap <silent> <Leader>l :TmuxNavigateRight<CR>
+
+nnoremap <silent> <Leader><Left> :TmuxNavigateLeft<CR>
+nnoremap <silent> <Leader><Down> :TmuxNavigateDown<CR>
+nnoremap <silent> <Leader><Up> :TmuxNavigateUp<CR>
+nnoremap <silent> <Leader><Right> :TmuxNavigateRight<CR>
+
 
 " FZF
 let $FZF_DEFAULT_COMMAND = 'find . -type f -not -path "*/\.git/*"'
 nnoremap <leader>fs :Files<CR>
+nnoremap <leader>fw :Ag<CR>
 
 " Vim Autoformat
 noremap <C-I> :Autoformat<CR>
@@ -109,6 +109,22 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 inoremap <silent><expr> <C-space> coc#refresh()
+
+" TabNine (YouCompleteMe fork) (Edit in tabnine-vim/plugin/youcompleteme.vim)
+
+let g:ycm_add_preview_to_completeopt = 0
+
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_echo_current_diagnostic = 0
+
+let g:ycm_key_list_select_completion = ['<TAB>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>']
+
+set completeopt-=preview
 
 " ALE
 
@@ -136,22 +152,10 @@ let g:ale_linters = {
             \       'pyre'
             \   ]}
 
-" Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
 
 " Theme
 
 " Ayu
-set termguicolors
-
 let ayucolor="mirage" " for mirage version of theme
 let g:indentLine_char = ''
 let g:indentLine_first_char = ''
