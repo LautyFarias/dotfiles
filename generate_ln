@@ -3,22 +3,21 @@
 eval "export CONFIG=$PWD"
 
 # dotfiles
-cp ~/.profile ~/.profile.old
-cp ~/.zprofile ~/.zprofile.old
-cp ~/.vimrc ~/.vimrc.old
+mv ~/.profile ~/.profile.old
+mv ~/.zprofile ~/.zprofile.old
+mv ~/.vimrc ~/.vimrc.old
 
 ln "$CONFIG/dotfiles/.profile" ~/.profile
 ln "$CONFIG/dotfiles/.zprofile" ~/.zprofile
 ln "$CONFIG/dotfiles/.vimrc" ~/.vimrc
 
 # .config folder
-cp ~/.config/alacritty ~/.config/alacritty.old
-cp ~/.config/nvim ~/.config/nvim.old
+mv ~/.config/alacritty ~/.config/alacritty.old
 
 ln -s "$CONFIG/.config/alacritty" ~/.config/alacritty
 ln -s "$CONFIG/.config/nvim" ~/.config/nvim
 
 # custom .bins
-cp ~/.bin ~/.bin.old
+mv ~/.bin ~/.bin.old
 
 ln -s "$CONFIG/.bin" ~/.bin
