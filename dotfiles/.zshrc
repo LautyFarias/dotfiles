@@ -1,19 +1,22 @@
 # OH MY ZSH
 
 # Path to oh-my-zsh installation.
-export ZSH="/home/_lfarias/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="random"
 
 plugins=(
-	git
+  git
 )
 
 source $ZSH/oh-my-zsh.sh
+
+
+# User configuration
 
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
@@ -22,19 +25,23 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Use autosuggestion
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Use history substring search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-
 # Use fzf
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+# source /usr/share/fzf/key-bindings.zsh
+# source /usr/share/fzf/completion.zsh
 
 # Arch Linux command-not-found support, you must have package pkgfile installed
 # https://wiki.archlinux.org/index.php/Pkgfile#.22Command_not_found.22_hook
 [[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
 
+
+# Scripts
+
 # Source nvm script
 [[ -e ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+
+# Load pyenv automatically by appending
+[[ -e ~/.pyenv/bin ]] && eval "$(pyenv init -)"
+
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes
@@ -50,7 +57,6 @@ setopt autocd                                                   # if only direct
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushdminus
-
 
 
 # Completion.
@@ -71,13 +77,20 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zcache
 
+
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit
+
+# Load propmt command
+autoload -Uz promptinit
+promptinit
+
 
 # History config
 HISTFILE=~/.zhistory
 HISTSIZE=50000
 SAVEHIST=10000
+
 
 # Keys.
 # Use emacs key bindings
@@ -123,9 +136,9 @@ if [[ -n "${terminfo[khome]}" ]]; then
 fi
 # [End] - Go to end of line
 if [[ -n "${terminfo[kend]}" ]]; then
-  bindkey -M emacs "${terminfo[kend]}"  end-of-line
-  bindkey -M viins "${terminfo[kend]}"  end-of-line
-  bindkey -M vicmd "${terminfo[kend]}"  end-of-line
+  bindkey -M emacs "${terminfo[kend]}" end-of-line
+  bindkey -M viins "${terminfo[kend]}" end-of-line
+  bindkey -M vicmd "${terminfo[kend]}" end-of-line
 fi
 
 # [Shift-Tab] - move through the completion menu backwards
@@ -154,6 +167,7 @@ else
   bindkey -M vicmd "^[3;5~" delete-char
 fi
 
+
 # Add useful aliases 
 alias grubup="sudo update-grub"
 
@@ -164,8 +178,6 @@ alias fixpacman="sudo rm /var/lib/pacman/db.lck"
 alias untar='tar -zxvf '
 alias wget='wget -c '
 
-alias speed='speedtest-cli --server 2406 --simple'
-
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -174,7 +186,7 @@ alias ......='cd ../../../../..'
 
 alias ls='ls --color=auto'
 alias l='ls -al'
-alias la='la -a'
+alias la='ls -a'
 alias ll='ls -l'
 
 alias dir='dir --color=auto'
@@ -190,11 +202,3 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # Set your countries like --country France --country Germany -- or more.
 alias upd='sudo reflector --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu'
-
-# Load propmt command
-autoload -Uz promptinit
-promptinit
-
-# Load pyenv automatically by appending
-# the following to ~/.zshrc:
-eval "$(pyenv init -)"
