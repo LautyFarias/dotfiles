@@ -1,3 +1,14 @@
 #!/bin/bash
 
+CONFIG=$HOME/Github/dotfiles
+
+# Set .zprofile.
+mv $HOME/.zprofile $HOME/.zprofile.old
+ln "$CONFIG/dotfiles/.zprofile" $HOME/.zprofile
+
+# Set .zshrc.
+mv $HOME/.zshrc $HOME/.zshrc.old
+ln "$CONFIG/dotfiles/.zshrc" $HOME/.zshrc
+
+# Install oh-my-zsh preserving .zshrc.
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
