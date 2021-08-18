@@ -1,24 +1,28 @@
 #!/bin/bash
 
-sudo pacman -S neovim nvm
+CONFIG=$HOME/Github/dotfiles
 
-source ~/.zshrc
-
+# Install node.js using nvm.
+source /usr/share/nvm/init-nvm.sh
 nvm install --lts
 
-mv ~/.config/nvim ~/.config/nvim.old
+# Set .vimrc.
+mv $HOME/.vimrc $HOME/.vimrc.old
+ln $CONFIG/dotfiles/.vimrc $HOME/.vimrc
 
-ln -s ~/Github/dotfiles/.config/nvim ~/.config/nvim
+# Set nvim config folder.
+mv $HOME/.config/nvim $HOME/.config/nvim.old
+ln -s $CONFIG/.config/nvim $HOME/.config/nvim
 
-python3 -m venv ~/.config/nvim/.venv
-
-source ~/.config/nvim/.venv/bin/activate
-
+# Install python3 provider in virtual env.
+python3 -m venv $HOME/.config/nvim/.venv
+source $HOME/.config/nvim/.venv/bin/activate
 pip install pynvim
-
 deactivate
 
+# Install vim-plug.
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+# Install all plugins.
 nvim ~/.config/nvim/plugins.vim -c :source % -c :PlugInstall -c :qa! -c :checkhealth
