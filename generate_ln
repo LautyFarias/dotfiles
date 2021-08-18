@@ -1,23 +1,15 @@
 #!/bin/bash
 
-eval "export CONFIG=$PWD"
+CONFIG=$HOME/Github/dotfiles
 
-# dotfiles
-mv ~/.profile ~/.profile.old
-mv ~/.zprofile ~/.zprofile.old
-mv ~/.vimrc ~/.vimrc.old
+# Set tmux config.
+mv $HOME/.tmux.conf $HOME/.tmux.conf.old
+ln -s $CONFIG/dotfiles/.tmux.conf $HOME/.tmux.conf
 
-ln "$CONFIG/dotfiles/.profile" ~/.profile
-ln "$CONFIG/dotfiles/.zprofile" ~/.zprofile
-ln "$CONFIG/dotfiles/.vimrc" ~/.vimrc
+# Set alacritty config folder.
+mv $HOME/.config/alacritty $HOME/.config/alacritty.old
+ln -s $CONFIG/.config/alacritty $HOME/.config/alacritty
 
-# .config folder
-mv ~/.config/alacritty ~/.config/alacritty.old
-
-ln -s "$CONFIG/.config/alacritty" ~/.config/alacritty
-ln -s "$CONFIG/.config/nvim" ~/.config/nvim
-
-# custom .bins
-mv ~/.bin ~/.bin.old
-
-ln -s "$CONFIG/.bin" ~/.bin
+# Set custom .bin folder.
+mv $HOME/.bin $HOME/.bin.old
+ln -s $CONFIG/.bin $HOME/.bin
