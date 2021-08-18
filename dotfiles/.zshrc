@@ -37,7 +37,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Scripts
 
 # Source nvm script
-[[ -e ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+[[ -e /usr/share/nvm ]] && source /usr/share/nvm/init-nvm.sh
 
 # Load pyenv automatically by appending
 [[ -e ~/.pyenv/bin ]] && eval "$(pyenv init -)"
@@ -171,7 +171,6 @@ fi
 # Add useful aliases 
 alias grubup="sudo update-grub"
 
-alias aup="pamac upgrade --aur"
 alias orphaned="pacman -Qtdq"
 alias fixpacman="sudo rm /var/lib/pacman/db.lck"
 
