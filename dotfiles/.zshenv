@@ -9,7 +9,7 @@ export TERMINAL=alacritty
 [[ -d "$HOME/.local/bin" ]] && export PATH=$HOME/.local/bin:$PATH
 
 # Set pyenv config.
-if [ -d "$HOME/.pyenv/bin" ]; then
+if [ -d "$HOME/.pyenv" ]; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
 

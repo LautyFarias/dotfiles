@@ -40,7 +40,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -e /usr/share/nvm ]] && source /usr/share/nvm/init-nvm.sh
 
 # Load pyenv automatically by appending
-[[ -e ~/.pyenv/bin ]] && eval "$(pyenv init -)"
+[[ -e ~/.pyenv ]] && eval "$(pyenv init -)"
 
 
 ## Options section
