@@ -5,6 +5,7 @@ tmux
 
 nvm
 pyenv
+python-pip
 
 fzf
 the_silver_searcher
