@@ -3,6 +3,8 @@ zsh-autosuggestions
 zsh-syntax-highlighting
 tmux
 
+docker
+docker-compose
 nvm
 pyenv
 python-pip
