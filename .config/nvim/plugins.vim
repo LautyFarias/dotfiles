@@ -1,13 +1,11 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Themes
-
 Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 Plug 'cocopon/iceberg.vim'
 
 " Interface
-
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -20,7 +18,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Code Style
-
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Chiel92/vim-autoformat'
@@ -28,8 +25,6 @@ Plug 'dense-analysis/ale'
 Plug 'codota/tabnine-vim'
 
 " coc
-" Plug 'pappasam/coc-jedi', {'branch': 'main', 'do': 'yarn install --frozen-lockfile'}
-" Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'LeonardSSH/coc-discord-rpc', {'do': 'yarn install --frozen-lockfile'}
 
 " Source control
@@ -103,14 +98,14 @@ noremap <C-I> :Autoformat<CR>
 noremap <C-L> :AutoformatLine<CR>
 
 " coc
-nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd :ALEGoToDefinition<CR>
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 inoremap <silent><expr> <C-space> coc#refresh()
 
-" TabNine (YouCompleteMe fork) (Edit in tabnine-vim/plugin/youcompleteme.vim)
+" TabNine (YouCompleteMe fork)
 
 let g:ycm_add_preview_to_completeopt = 0
 
@@ -149,7 +144,8 @@ let g:ale_linters = {
             \       'pylint',
             \       'pycodestyle',
             \       'pyright',
-            \       'pyre'
+            \       'pyre',
+            \       'pylsp',
             \   ]}
 
 
