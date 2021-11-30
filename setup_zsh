@@ -3,8 +3,8 @@
 CONFIG=$HOME/Github/dotfiles
 
 # Set .zprofile.
-mv $HOME/.zprofile $HOME/.zprofile.old
-ln "$CONFIG/dotfiles/.zprofile" $HOME/.zprofile
+mv $HOME/.zshenv $HOME/.zshenv.old
+ln "$CONFIG/dotfiles/.zshenv" $HOME/.zshenv
 
 # Set .zshrc.
 mv $HOME/.zshrc $HOME/.zshrc.old
