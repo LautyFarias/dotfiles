@@ -1,10 +1,10 @@
 " Indention
-set expandtab      " Convert tabs to spaces.
-set smarttab       " Insert “tabstop” number of spaces when the “tab” key is pressed.
-set tabstop=4      " Indent using four spaces.
-set cindent        " Use 'C' style program indenting
-set smartindent    " Enable smart-indent
-set softtabstop=4  " Number of spaces per Tab
+set expandtab       " Convert tabs to spaces.
+set smarttab        " Insert “tabstop” number of spaces when the “tab” key is pressed.
+set tabstop=4       " Indent using four spaces.
+set cindent         " Use 'C' style program indenting
+set smartindent     " Enable smart-indent
+set softtabstop=-1  " Number of spaces per Tab
 
 " Search
 set hlsearch   " Enable search highlighting.
@@ -43,12 +43,15 @@ set showmatch         " Highlight matching brace
 set clipboard=unnamedplus
 set termguicolors
 
+autocmd BufEnter * silent! lcd %:p:h
+
 " Mapping
 :let mapleader = ' '
 imap ii <Esc>
 nmap <Esc> :noh<CR>
 
 nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>
 nnoremap <C-q> :q<CR>
 
 nnoremap <C-S-Up> :sp<CR>
