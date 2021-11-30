@@ -4,6 +4,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'projekt0n/github-nvim-theme'
 
 " Interface
 Plug 'scrooloose/nerdtree'
@@ -20,9 +21,8 @@ Plug 'christoomey/vim-tmux-navigator'
 " Code Style
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'Chiel92/vim-autoformat'
 Plug 'dense-analysis/ale'
-Plug 'codota/tabnine-vim'
+" Plug 'codota/tabnine-vim'
 
 " coc
 " Plug 'LeonardSSH/coc-discord-rpc', {'do': 'yarn install --frozen-lockfile'}
@@ -35,6 +35,10 @@ call plug#end()
 " ========
 " Plugins Configs
 " ========
+
+" Signify
+" default updatetime 4000ms is not good for async update
+set updatetime=100
 
 " NERDTree
 " Start NERDTree when Vim starts with a argument distinct git file o directory.
@@ -91,14 +95,18 @@ nnoremap <silent> <Leader><Right> :TmuxNavigateRight<CR>
 " FZF
 let $FZF_DEFAULT_COMMAND = 'find . -type f -not -path "*/\.git/*"'
 nnoremap <leader>fs :Files<CR>
-nnoremap <leader>fw :Ag<CR>
-
-" Vim Autoformat
-noremap <C-I> :Autoformat<CR>
-noremap <C-L> :AutoformatLine<CR>
+nnoremap <leader>fw :Rg<CR>
 
 " coc
-nmap <silent> gd :ALEGoToDefinition<CR>
+
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -107,26 +115,27 @@ inoremap <silent><expr> <C-space> coc#refresh()
 
 " TabNine (YouCompleteMe fork)
 
-let g:ycm_add_preview_to_completeopt = 0
+" let g:ycm_add_preview_to_completeopt = 0
 
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
 
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_echo_current_diagnostic = 0
+" let g:ycm_enable_diagnostic_signs = 0
+" let g:ycm_enable_diagnostic_highlighting = 0
+" let g:ycm_echo_current_diagnostic = 0
 
-let g:ycm_key_list_select_completion = ['<TAB>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>']
+" let g:ycm_key_list_select_completion = ['<TAB>']
+" let g:ycm_key_list_previous_completion = ['<S-TAB>']
 
-set completeopt-=preview
+" set completeopt-=preview
 
 " ALE
 
+nmap <silent> gd :ALEGoToDefinition<CR>
 nmap <C-A-f> :ALEFix<CR>
+
 let g:ale_virtualenv_dir_names = ['env', '.env', 'venv', '.venv']
 
-" add_blank_lines_for_python_control_statements
 let g:ale_fixers = {
             \   '*': [
             \       'remove_trailing_lines',
@@ -142,7 +151,7 @@ let g:ale_fixers = {
 let g:ale_linters = {
             \   'python': [
             \       'pylint',
-            \       'pycodestyle',
+            \       'mypy',
             \       'pyright',
             \       'pyre',
             \       'pylsp',
@@ -161,6 +170,7 @@ let g:indentLine_setColors = 0
 " Gruvbox
 let g:gruvbox_contrast_dark = 'hard'
 
-colorscheme ayu
+" colorscheme ayu
 " colorscheme gruvbox
 " colorscheme iceberg
+colorscheme github_dark
