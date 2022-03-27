@@ -22,7 +22,8 @@ fi
 # Set composer bin.
 [[ -d "$HOME/.config/composer/vendor/bin" ]] && export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
+# Set arkade bin.
 [[ -d "$HOME/.arkade/bin" ]] && export PATH="$HOME/.arkade/bin:$PATH"
 
-# Set custom commands
+# Set custom commands.
 export PATH="$HOME/.bin:$PATH"

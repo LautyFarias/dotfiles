@@ -1,18 +1,18 @@
 #!/bin/bash
 
-CONFIG=$HOME/Github/dotfiles
+config=$HOME/Github/dotfiles
 
 # Install node.js using nvm.
 source /usr/share/nvm/init-nvm.sh
 nvm install --lts
 
 # Set .vimrc.
-mv $HOME/.vimrc $HOME/.vimrc.old
-ln $CONFIG/dotfiles/.vimrc $HOME/.vimrc
+[[ ! -f "$HOME/.vimrc" ]] && mv $HOME/.vimrc $HOME/.vimrc.old
+ln $config/dotfiles/.vimrc $HOME/.vimrc
 
 # Set nvim config folder.
-mv $HOME/.config/nvim $HOME/.config/nvim.old
-ln -s $CONFIG/.config/nvim $HOME/.config/nvim
+[[ -d "$HOME/.config/nvim" ]] && mv $HOME/.config/nvim $HOME/.config/nvim.old
+ln -s $config/.config/nvim $HOME/.config/nvim
 
 # Install python3 provider in virtual env.
 python3 -m venv $HOME/.config/nvim/.venv
