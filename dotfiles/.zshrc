@@ -196,8 +196,9 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 alias nyancat='pygmentize -g -O style=colorful,linenos=1'
+alias k=kubectl
 
 alias path='echo -e ${PATH//:/\\n}'
 
 # Set your countries like --country France --country Germany -- or more.
-alias upd='sudo reflector --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu'
+alias update_mirror='sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.save && sudo reflector --latest 20 --age 2 --fastest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
