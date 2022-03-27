@@ -1,0 +1,64 @@
+#!/bin/sh
+
+gnome=(
+    "chrome-gnome-shell"
+)
+
+bluetooth=(
+    "pipewire-pulse"
+    "bluez-firmware"
+    "bluez-hid2hci"
+)
+
+user=(
+    # zsh
+    "zsh"
+    "zsh-autosuggestions"
+    "zsh-syntax-highlighting"
+    # Shell
+    "alacritty"
+    "tmux"
+    # Docker
+    "docker"
+    "docker-compose"
+    # Programming utils
+    "nvm"
+    "pyenv"
+    "python-pip"
+    "ngrok"
+    # neovim utils
+    "fzf"
+    "the_silver_searcher"
+    # Code editors
+    "neovim"
+    "visual-studio-code-bin"
+    # Fonts
+    "nerd-fonts-fira-code"
+    "noto-fonts"
+    # User utils
+    "microsoft-edge-stable-bin"
+    "bitwarden"
+    "discord"
+    "copyq"
+)
+
+extra=()
+
+while (( "$#" )); do
+  case "$1" in
+    -g|--gnome)
+      extra+=${gnome[*]}
+      shift
+      ;;
+    -b|--bluetooth)
+      extra+=${bluetooth[*]}
+      shift
+      ;;
+    -*|--*=) # Unsupported flags
+      echo "Error: Unsupported flag $1" >&2
+      exit 1
+      ;;
+  esac
+done
+
+yay -Syu ${user[*]} ${extra[*]}
