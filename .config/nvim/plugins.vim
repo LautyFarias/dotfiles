@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Helpers
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'preservim/nerdcommenter'
 
 " Code Style
 Plug 'sheerun/vim-polyglot'
