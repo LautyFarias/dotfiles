@@ -43,8 +43,7 @@ set showmatch         " Highlight matching brace
 set clipboard=unnamedplus
 set termguicolors
 
-autocmd BufEnter * silent! lcd %:p:h
-
+lcd %:p:h
 " Mapping
 :let mapleader = ' '
 imap ii <Esc>
