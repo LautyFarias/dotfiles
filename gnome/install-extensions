@@ -1,0 +1,43 @@
+#!/bin/sh
+
+extensions=(
+    19   # User Themes
+    615  # AppIndicator and KStatusNotifierItem Support
+    3193 # Blur my Shell
+    97   # Coverflow Alt-Tab
+    3843 # Just Perfection
+    600  # Launch new instance
+)
+
+gnome_version=$(gnome-shell --version | sed -n "s/^.* \([0-9]\+\).*$/\1/p")
+
+extensions_dir="$HOME/.local/share/gnome-shell/extensions"
+extensions_site="https://extensions.gnome.org"
+extension_info_url="${extensions_site}/extension-info/?pk="
+extension_download_url="${extensions_site}/download-extension"
+
+curl_parameters=-Lfs
+
+for extension_id in $extensions; do
+    extension_info=$(curl $curl_parameters "https://extensions.gnome.org/extension-info/?pk=${extension_id}")
+
+    uuid=$(sed 's/^.*\"uuid\"[: \"]*\([^\"]*\).*$/\1/' <<< "$extension_info")
+    version_tag=$(sed "s/^.*$gnome_version\": {\"pk[\": ]\+\([0-9]\+\),.*$/\1/" <<< "$extension_info")
+
+    echo "Fetch ${uuid} extension..."
+
+    zip_file="/tmp/shell-$gnome_version-extension-install.$extension_id.zip"
+    curl $curl_parameters \
+        -o "$zip_file" \
+        "${extension_download_url}/${uuid}.shell-extension.zip?version_tag=${version_tag}"
+
+    extension_dir="$extensions_dir/$uuid"
+    echo "Installing ${uuid} extension in ${extension_dir}..."
+
+    mkdir -p "$extensions_dir"
+    unzip -qq -o "$zip_file" -d "$extension_dir"
+    rm -f "$zip_file"
+
+    gnome-extensions enable $uuid
+    echo "Successfully enable ${uuid} extension."
+done
