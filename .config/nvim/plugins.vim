@@ -23,7 +23,6 @@ Plug 'preservim/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
-" Plug 'codota/tabnine-vim'
 
 " coc
 " Plug 'LeonardSSH/coc-discord-rpc', {'do': 'yarn install --frozen-lockfile'}
@@ -114,22 +113,6 @@ nmap <silent> gr <Plug>(coc-references)
 
 inoremap <silent><expr> <C-space> coc#refresh()
 
-" TabNine (YouCompleteMe fork)
-
-" let g:ycm_add_preview_to_completeopt = 0
-
-" let g:ycm_autoclose_preview_window_after_insertion = 1
-" let g:ycm_autoclose_preview_window_after_completion = 1
-
-" let g:ycm_enable_diagnostic_signs = 0
-" let g:ycm_enable_diagnostic_highlighting = 0
-" let g:ycm_echo_current_diagnostic = 0
-
-" let g:ycm_key_list_select_completion = ['<TAB>']
-" let g:ycm_key_list_previous_completion = ['<S-TAB>']
-
-" set completeopt-=preview
-
 " ALE
 
 nmap <silent> gd :ALEGoToDefinition<CR>
@@ -153,8 +136,6 @@ let g:ale_linters = {
             \   'python': [
             \       'pylint',
             \       'mypy',
-            \       'pyright',
-            \       'pyre',
             \       'pylsp',
             \   ]}
 
