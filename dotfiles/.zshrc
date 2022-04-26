@@ -63,6 +63,8 @@ setopt pushdminus
 autoload -Uz compinit
 compinit
 
+fpath+=~/.zfunc  # Set custom paths for completions.
+
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 zstyle ':completion:*' rehash true                              # automatically find new executables in path 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
@@ -202,3 +204,4 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # Set your countries like --country France --country Germany -- or more.
 alias update_mirror='sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.save && sudo reflector --latest 20 --age 2 --fastest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+[[ /home/lfarias/.arkade/bin/kubectl ]] && source <(kubectl completion zsh)
