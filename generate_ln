@@ -4,12 +4,12 @@ config=$HOME/Github/dotfiles
 
 # Set tmux config.
 [[ ! -f "$HOME/.tmux.conf" ]] && mv $HOME/.tmux.conf $HOME/.tmux.conf.old
-ln -s $config/dotfiles/.tmux.conf $HOME/.tmux.conf
+ln -s $config/.tmux.conf $HOME/.tmux.conf
 
 # Set alacritty config folder.
 [[ -d "$HOME/.alacritty" ]] && mv $HOME/.config/alacritty $HOME/.config/alacritty.old
 ln -s $config/.config/alacritty $HOME/.config/alacritty
 
 # Set custom .bin folder.
-[[ -d "$HOME/.bin" ]] && mv $HOME/.bin $HOME/.bin.old
-ln -s $config/.bin $HOME/.bin
+[[ -d "$HOME/bin" ]] && mv $HOME/bin $HOME/bin.old
+ln -s $config/bin $HOME/bin

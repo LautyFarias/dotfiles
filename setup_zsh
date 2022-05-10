@@ -4,11 +4,11 @@ config=$HOME/Github/dotfiles
 
 # Set .zprofile.
 [[ ! -f "$HOME/.zshenv" ]] && mv $HOME/.zshenv $HOME/.zshenv.old
-ln "$config/dotfiles/.zshenv" $HOME/.zshenv
+ln "$config/.zshenv" $HOME/.zshenv
 
 # Set .zshrc.
 [[ ! -f "$HOME/.zshrc" ]] && mv $HOME/.zshrc $HOME/.zshrc.old
-ln "$config/dotfiles/.zshrc" $HOME/.zshrc
+ln "$config/.zshrc" $HOME/.zshrc
 
 # Install oh-my-zsh preserving .zshrc.
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc

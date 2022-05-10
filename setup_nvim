@@ -8,7 +8,7 @@ nvm install --lts
 
 # Set .vimrc.
 [[ ! -f "$HOME/.vimrc" ]] && mv $HOME/.vimrc $HOME/.vimrc.old
-ln -s $config/dotfiles/.vimrc $HOME/.vimrc
+ln -s $config/.vimrc $HOME/.vimrc
 
 # Set nvim config folder.
 [[ -d "$HOME/.config/nvim" ]] && mv $HOME/.config/nvim $HOME/.config/nvim.old
