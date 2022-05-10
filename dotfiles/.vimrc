@@ -44,6 +44,7 @@ set clipboard=unnamedplus
 set termguicolors
 
 lcd %:p:h
+
 " Mapping
 :let mapleader = ' '
 imap ii <Esc>

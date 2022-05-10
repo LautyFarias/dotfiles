@@ -29,6 +29,7 @@ user=(
     # neovim utils
     "fzf"
     "the_silver_searcher"
+    "ripgrep"
     # Code editors
     "neovim"
     "visual-studio-code-bin"
