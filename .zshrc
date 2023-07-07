@@ -39,9 +39,6 @@ source /usr/share/fzf/completion.zsh
 # Source nvm script
 [[ -e /usr/share/nvm ]] && source /usr/share/nvm/init-nvm.sh
 
-# Load pyenv automatically by appending
-[[ -e ~/.pyenv ]] && eval "$(pyenv init -)"
-
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes
@@ -204,4 +201,4 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # Set your countries like --country France --country Germany -- or more.
 alias update_mirror='sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.save && sudo reflector --latest 20 --age 2 --fastest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
-[[ /home/lfarias/.arkade/bin/kubectl ]] && source <(kubectl completion zsh)
+[[ -f /home/lfarias/.arkade/bin/kubectl ]] && source <(kubectl completion zsh)
