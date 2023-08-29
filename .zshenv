@@ -1,29 +1,20 @@
-# Load .profile.
+# Load .profile if exists.
 [[ ! -f ~/.profile ]] || source ~/.profile
 
 export EDITOR=/usr/bin/nvim
-export BROWSER=microsoft-edge-beta
+export BROWSER=microsoft-edge-stable
 export TERMINAL=alacritty
 
-# Set $PATH if ~/.local/bin exist.
-[[ -d "$HOME/.local/bin" ]] && export PATH=$HOME/.local/bin:$PATH
+# Set $PATH if ~/.local/bin exists.
+[[ -d "~/.local/bin" ]] && export PATH=~/.local/bin:$PATH
 
 # Set pyenv config.
-if [ -d "$HOME/.pyenv" ]; then
-  export PYENV_ROOT="$HOME/.pyenv"
+if [ -d "~/.pyenv" ]; then
+  export PYENV_ROOT="~/.pyenv"
   command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 
   eval "$(pyenv init -)"
 fi
 
 # Set poetry bin.
-[[ -d "$HOME/.poetry/bin" ]] && export PATH="$HOME/.poetry/bin:$PATH"
-
-# Set composer bin.
-[[ -d "$HOME/.config/composer/vendor/bin" ]] && export PATH="$HOME/.config/composer/vendor/bin:$PATH"
-
-# Set arkade bin.
-[[ -d "$HOME/.arkade/bin" ]] && export PATH="$HOME/.arkade/bin:$PATH"
-
-# Set custom commands.
-export PATH="$HOME/.bin:$PATH"
+[[ -d "~/.poetry/bin" ]] && export PATH="~/.poetry/bin:$PATH"
