@@ -1,3 +1,5 @@
+.DEFAULT_GOAL := setup
+
 REPO := ${PWD}
 
 include zsh/Makefile
