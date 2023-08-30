@@ -102,11 +102,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
-# Arch Linux command-not-found support, you must have package pkgfile installed
-# https://wiki.archlinux.org/index.php/Pkgfile#.22Command_not_found.22_hook
-[[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
-
-
 # Scripts
 
 # Source nvm script
@@ -114,26 +109,23 @@ source /usr/share/fzf/completion.zsh
 
 
 ## Options section
-setopt correct                                                  # Auto correct mistakes
-setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
-setopt nocaseglob                                               # Case insensitive globbing
-setopt rcexpandparam                                            # Array expension with parameters
-setopt nocheckjobs                                              # Don't warn about running processes when exiting
-setopt numericglobsort                                          # Sort filenames numerically when it makes sense
-setopt nobeep                                                   # No beep
-setopt appendhistory                                            # Immediately append history instead of overwriting
-setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
-setopt autocd                                                   # if only directory path is entered, cd there.
-setopt auto_pushd
-setopt pushd_ignore_dups
-setopt pushdminus
+setopt extendedglob      # Extended globbing. Allows using regular expressions with *
+setopt nocaseglob        # Case insensitive globbing
+setopt rcexpandparam     # Array expension with parameters
+setopt numericglobsort   # Sort filenames numerically when it makes sense
+setopt appendhistory     # Immediately append history instead of overwriting
+setopt histignorealldups # If a new command is a duplicate, remove the older one
 
+# Load propmt command
+autoload -Uz promptinit
+promptinit
 
 # Completion.
 autoload -Uz compinit
 compinit
 
-fpath+=~/.zfunc  # Set custom paths for completions.
+# Automatically load bash completion functions
+autoload -U +X bashcompinit && bashcompinit
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 zstyle ':completion:*' rehash true                              # automatically find new executables in path 
@@ -143,19 +135,10 @@ zstyle ':completion:*' menu select=2
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
 
-
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zcache
-
-
-# automatically load bash completion functions
-autoload -U +X bashcompinit && bashcompinit
-
-# Load propmt command
-autoload -Uz promptinit
-promptinit
 
 # Keys.
 # Use emacs key bindings
