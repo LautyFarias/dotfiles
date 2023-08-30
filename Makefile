@@ -1,9 +1,17 @@
 REPO := ${PWD}
 
 setup-zsh:
+	make install-zsh
+	make install-zsh-plugins
 	make setup-zshenv
 	make setup-zshrc
 	make install-ohmyzsh
+
+install-zsh:
+	yay -S zsh
+
+install-zsh-plugins:
+	yay -S zsh-autosuggestions zsh-syntax-highlighting fzf
 
 setup-zshenv:
 	$(if $(wildcard ~/.zshenv), mv ~/.zshenv ~/.zshenv.old)

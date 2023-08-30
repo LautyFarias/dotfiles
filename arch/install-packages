@@ -11,10 +11,6 @@ bluetooth=(
 )
 
 user=(
-    # zsh
-    "zsh"
-    "zsh-autosuggestions"
-    "zsh-syntax-highlighting"
     # Shell
     "alacritty"
     "tmux"
