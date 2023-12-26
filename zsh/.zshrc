@@ -104,9 +104,8 @@ source /usr/share/fzf/completion.zsh
 
 # Scripts
 
-# Source nvm script
 [[ -e /usr/share/nvm ]] && source /usr/share/nvm/init-nvm.sh
-
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 ## Options section
 setopt extendedglob      # Extended globbing. Allows using regular expressions with *
