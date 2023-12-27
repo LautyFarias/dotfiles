@@ -70,7 +70,14 @@ ZSH_THEME="random"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(
+  aliases
+  common-aliases
+  git
+  z
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,7 +108,6 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # Scripts
 
 [[ -e /usr/share/nvm ]] && source /usr/share/nvm/init-nvm.sh
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 ## Options section
 setopt extendedglob      # Extended globbing. Allows using regular expressions with *
@@ -204,27 +210,4 @@ bindkey -M vicmd '^?' backward-delete-char
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# On-demand rehash
-zshcache_time="$(date +%s%N)"
-
-autoload -Uz add-zsh-hook
-
-rehash_precmd() {
-  if [[ -a /var/cache/zsh/pacman ]]; then
-    local paccache_time="$(date -r /var/cache/zsh/pacman +%s%N)"
-    if (( zshcache_time < paccache_time )); then
-      rehash
-      zshcache_time="$paccache_time"
-    fi
-  fi
-}
-
-add-zsh-hook -Uz precmd rehash_precmd
-
-# ls
-alias l="ls -alh"
-alias ll="ls -lh"
-alias la="ls -ah"
-
 alias untar='tar -zxvf '
