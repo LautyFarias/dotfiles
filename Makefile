@@ -13,13 +13,9 @@ endif
 
 include zsh/Makefile
 
-setup:
-	make setup-zsh
-	make install-packages
-	setup-node
-	setup-python
+setup: zsh install-packages node python
 
-setup-packages:
+setup-deps:
 	sudo add-apt-repository ppa:hluk/copyq
 
 	# Code
@@ -30,16 +26,14 @@ setup-packages:
 	
 	sudo apt update
 
-install-packages:
-ifneq ($(filter ${DISTRO},${APT_DISTROS}),)
-	make setup-packages
-else
+install-deps: $(if $(filter ${DISTRO},${APT_DISTROS}), setup-deps)
+ifeq ($(filter ${DISTRO},${APT_DISTROS}),)
 	${INSTALL_COMMAND} microsoft-edge-stable-bin
 endif
 	${INSTALL_COMMAND} copyq code
 
-setup-node:
+node:
 	curl https://get.volta.sh | bash -s -- --skip-setup
 
-setup-python:
+python:
 	curl https://pyenv.run | bash
