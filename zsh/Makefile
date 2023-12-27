@@ -1,16 +1,6 @@
 ZSH_FOLDER := /zsh
 ZSH_PLUGINS := ~/.oh-my-zsh/plugins
 
-DISTRO := $(shell lsb_release -is)
-
-APT_DISTROS := Zorin Ubuntu
-
-ifneq ($(filter ${DISTRO},${APT_DISTROS}),)  
-	INSTALL_COMMAND := sudo apt install
-else  # By default arch-based distro
-	INSTALL_COMMAND := yay -S
-endif
-
 setup-zsh:
 	make install-zsh
 	make install-ohmyzsh
@@ -22,8 +12,8 @@ install-zsh:
 	${INSTALL_COMMAND} zsh
 
 install-zsh-plugins:
-	gh repo clone zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/zsh-autosuggestions
-	gh repo clone zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM}/zsh-syntax-highlighting
+	gh repo clone zsh-users/zsh-autosuggestions ${ZSH_PLUGINS}/zsh-autosuggestions
+	gh repo clone zsh-users/zsh-syntax-highlighting ${ZSH_PLUGINS}/zsh-syntax-highlighting
 
 	${INSTALL_COMMAND} fzf
 
