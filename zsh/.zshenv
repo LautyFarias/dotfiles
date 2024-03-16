@@ -1,13 +1,6 @@
 # Load .profile if exists.
 [[ ! -f ~/.profile ]] || source ~/.profile
 
-export EDITOR=/usr/bin/nvim
-export BROWSER=microsoft-edge-stable
-export TERMINAL=alacritty
-
-# Set docker host
-export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
-
 # Set $PATH if ~/.local/bin exists.
 [[ -d "~/.local/bin" ]] && export PATH=~/.local/bin:$PATH
 
