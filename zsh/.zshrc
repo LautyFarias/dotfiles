@@ -107,7 +107,7 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # Scripts
 
 # Set pyenv configuration if it's installed.
-if [ -d "~/.pyenv" ]; then
+if [ -d ~/.pyenv ]; then
   export PYENV_ROOT="~/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
 
@@ -115,7 +115,7 @@ if [ -d "~/.pyenv" ]; then
 fi
 
 # Set volta configuration if it's installed.
-if [ -d "~/.volta" ]; then
+if [ -d ~/.volta ]; then
   export VOLTA_HOME="$HOME/.volta"
   export PATH="$VOLTA_HOME/bin:$PATH"
 fi
