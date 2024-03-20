@@ -104,25 +104,6 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
-# Scripts
-
-# Set pyenv configuration if it's installed.
-if [ -d ~/.pyenv ]; then
-  export PYENV_ROOT="~/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-
-  eval "$(pyenv init -)"
-fi
-
-# Set volta configuration if it's installed.
-if [ -d ~/.volta ]; then
-  export VOLTA_HOME="$HOME/.volta"
-  export PATH="$VOLTA_HOME/bin:$PATH"
-fi
-
-# Set nvm configuration if it's installed.
-[[ -e /usr/share/nvm ]] && source /usr/share/nvm/init-nvm.sh
-
 ## Options section
 setopt extendedglob      # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob        # Case insensitive globbing
