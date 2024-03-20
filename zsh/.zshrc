@@ -109,7 +109,7 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # Set pyenv configuration if it's installed.
 if [ -d "~/.pyenv" ]; then
   export PYENV_ROOT="~/.pyenv"
-  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  export PATH="$PYENV_ROOT/bin:$PATH"
 
   eval "$(pyenv init -)"
 fi
