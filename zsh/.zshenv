@@ -4,17 +4,6 @@
 # Set $PATH if ~/.local/bin exists.
 [[ -d "~/.local/bin" ]] && export PATH=~/.local/bin:$PATH
 
-# Set pyenv config.
-if [ -d "~/.pyenv" ]; then
-  export PYENV_ROOT="~/.pyenv"
-  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-
-  eval "$(pyenv init -)"
-fi
-
-# Set poetry bin.
-[[ -d "~/.poetry/bin" ]] && export PATH="~/.poetry/bin:$PATH"
-
 if [ -z "$SSH_AUTH_SOCK" ]; then
    # Check for a currently running instance of the agent
    RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"

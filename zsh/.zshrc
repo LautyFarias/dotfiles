@@ -97,9 +97,6 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -109,6 +106,21 @@ source /usr/share/doc/fzf/examples/completion.zsh
 
 # Scripts
 
+# Set pyenv configuration if it's installed.
+if [ -d "~/.pyenv" ]; then
+  export PYENV_ROOT="~/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+
+  eval "$(pyenv init -)"
+fi
+
+# Set volta configuration if it's installed.
+if [ -d "~/.volta" ]; then
+  export VOLTA_HOME="$HOME/.volta"
+  export PATH="$VOLTA_HOME/bin:$PATH"
+fi
+
+# Set nvm configuration if it's installed.
 [[ -e /usr/share/nvm ]] && source /usr/share/nvm/init-nvm.sh
 
 ## Options section
@@ -213,3 +225,5 @@ bindkey -M vicmd '^?' backward-delete-char
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias untar='tar -zxvf '
+
+PATH=~/.console-ninja/.bin:$PATH
