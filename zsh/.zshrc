@@ -100,6 +100,9 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
 ## Options section
 setopt extendedglob      # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob        # Case insensitive globbing
