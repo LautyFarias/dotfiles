@@ -1,23 +1,16 @@
-ZSH_FOLDER := /zsh
 ZSH_PLUGINS := ~/.oh-my-zsh/plugins
 
-zsh: install-zsh-plugins zsh-dotfiles
+ohmyzsh:
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-install-zsh:
-	${INSTALL_COMMAND} zsh
-
-install-ohmyzsh: install-zsh
-	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-install-zsh-plugins: install-ohmyzsh
+zsh-plugins:
 	gh repo clone zsh-users/zsh-autosuggestions ${ZSH_PLUGINS}/zsh-autosuggestions
 	gh repo clone zsh-users/zsh-syntax-highlighting ${ZSH_PLUGINS}/zsh-syntax-highlighting
 
-	${INSTALL_COMMAND} fzf
+zshrc:
+	$(if $(wildcard ${HOME}/.zshrc), mv ${HOME}/.zshrc ${HOME}/.zshrc.old)
+	ln "${REPO}/zsh/.zshrc" ${HOME}/.zshrc
 
-zsh-dotfiles:
-	$(if $(wildcard ~/.zshenv), mv ~/.zshenv ~/.zshenv.old)
-	ln "${REPO}${ZSH_FOLDER}/.zshenv" ~/.zshenv
-
-	$(if $(wildcard ~/.zshrc), mv ~/.zshrc ~/.zshrc.old)
-	ln "${REPO}${ZSH_FOLDER}/.zshrc" ~/.zshrc
+zshenv:
+	$(if $(wildcard ${HOME}/.zshenv), mv ${HOME}/.zshenv ${HOME}/.zshenv.old)
+	ln "${REPO}/zsh/.zshenv" ${HOME}/.zshenv
